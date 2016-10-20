@@ -2,20 +2,42 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 android:layout_width="wrap_content"
 android:layout_height="wrap_content"
-android:orientation="vertical"
+android:orientation="horizontal"
 android:padding="10dp">
 
-<TextView
-    android:id="@+id/tvTitle"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:textStyle="bold"
-    android:textAppearance="?attr/textAppearanceListItem" />
+    <ImageView
+        android:id="@+id/ivIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
-<TextView
-    android:id="@+id/tvDescription"
-    android:layout_width="match_parent"
-    android:layout_height="42dp"
-    android:textAppearance="?attr/textAppearanceListItem" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent"
+        android:weightSum="5">
+
+        <TextView
+            android:text="aaaa"
+            android:id="@+id/tvTitle"
+            android:layout_weight="2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:textStyle="bold"
+            android:padding="2dp"
+            android:textAppearance="?attr/textAppearanceListItem" />
+
+        <TextView
+            android:text="bbbbbbb"
+            android:layout_weight="3"
+            android:id="@+id/tvDescription"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:padding="2dp"
+            android:textAppearance="?attr/textAppearanceListItem" />
+
+    </LinearLayout>
+
+
+
 
 </LinearLayout>

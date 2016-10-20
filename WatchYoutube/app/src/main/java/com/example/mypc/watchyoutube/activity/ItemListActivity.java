@@ -1,24 +1,14 @@
 package com.example.mypc.watchyoutube.activity;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 
 
 import com.example.mypc.watchyoutube.R;
-import com.example.mypc.watchyoutube.adapter.ChanneltemRecyclerViewAdapter;
-import com.example.mypc.watchyoutube.objectsofchannel.Channel;
-import com.example.mypc.watchyoutube.restapi.ChannelAPI;
 import com.example.mypc.watchyoutube.retrofit.ChannelRetrofit;
 
 import java.util.ArrayList;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * An activity representing a list of Items. This activity

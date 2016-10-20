@@ -2,6 +2,7 @@ package com.example.mypc.watchyoutube.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.RecyclerView;
@@ -59,6 +60,7 @@ public class ChanneltemRecyclerViewAdapter extends RecyclerView.Adapter<Channelt
                 .into(holder.ivIcon);
         holder.tvTitle.setText(tilte);
         holder.tvDescription.setText(description);
+        holder.mView.setBackgroundResource(R.drawable.item_channel_state);
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,6 +84,7 @@ public class ChanneltemRecyclerViewAdapter extends RecyclerView.Adapter<Channelt
             }
         });
     }
+
 
     @Override
     public int getItemCount() {

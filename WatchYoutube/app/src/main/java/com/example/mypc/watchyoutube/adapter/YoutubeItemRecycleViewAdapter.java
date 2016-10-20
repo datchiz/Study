@@ -4,10 +4,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.mypc.watchyoutube.R;
 import com.example.mypc.watchyoutube.objectofyoutube.Snippet;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -35,8 +37,21 @@ public class YoutubeItemRecycleViewAdapter extends RecyclerView.Adapter<YoutubeI
         holder.mItem = mValues.get(position);
         final String tilte       = holder.mItem.getTitle().toString();
         final String description = holder.mItem.getDescription().toString();
+
+        if (!tilte.equals("Deleted video") && !tilte.equals("Private video")){
+            final String icon        = holder.mItem.getThumbnails().getDefault()
+                    .getUrl()
+                    .toString();
+
+            Picasso.with(holder.mView.getContext())
+                    .load(icon)
+                    .into(holder.ivIcon);
+        }
+
         holder.tvTitle.setText(tilte);
         holder.tvDescription.setText(description);
+        holder.mView.setBackgroundResource(R.drawable.item_youtube_state);
+        holder.mView.setClickable(true);
 
 //        holder.mView.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -69,6 +84,7 @@ public class YoutubeItemRecycleViewAdapter extends RecyclerView.Adapter<YoutubeI
         public final View mView;
         public final TextView tvTitle;
         public final TextView tvDescription;
+        public final ImageView ivIcon;
         public Snippet mItem;
 
         public ViewHolder(View view) {
@@ -76,6 +92,7 @@ public class YoutubeItemRecycleViewAdapter extends RecyclerView.Adapter<YoutubeI
             mView         = view;
             tvTitle       = (TextView) view.findViewById(R.id.tvTitle);
             tvDescription = (TextView) view.findViewById(R.id.tvDescription);
+            ivIcon        = (ImageView) view.findViewById(R.id.ivIcon);
         }
 
 //        @Override

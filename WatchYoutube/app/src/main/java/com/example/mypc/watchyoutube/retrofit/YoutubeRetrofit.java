@@ -6,7 +6,6 @@ import com.example.mypc.watchyoutube.objectofplaylist.Item;
 import com.example.mypc.watchyoutube.objectofplaylist.PlayList;
 import com.example.mypc.watchyoutube.objectofyoutube.Snippet;
 import com.example.mypc.watchyoutube.objectofyoutube.Youtube;
-import com.example.mypc.watchyoutube.restapi.PlayListAPI;
 import com.example.mypc.watchyoutube.restapi.YoutubeAPI;
 
 import java.util.ArrayList;
@@ -45,9 +44,9 @@ public class YoutubeRetrofit {
                 .build();
 
         // Khởi tạo các cuộc gọi cho Retrofit 2.0
-        final PlayListAPI playListAPI = retrofit.create(PlayListAPI.class);
+        final YoutubeAPI youtubeAPI = retrofit.create(YoutubeAPI.class);
 
-        Call<PlayList> call = playListAPI.loadChannel(channelIDs);
+        Call<PlayList> call = youtubeAPI.loadPlayList(channelIDs);
         call.enqueue(new Callback<PlayList>() {
             @Override
             public void onResponse(Call<PlayList> call, Response<PlayList> response) {
@@ -85,7 +84,7 @@ public class YoutubeRetrofit {
         final int size = playListIDs.size();
 
         for(int i = 0; i < size; i++){
-            Call<Youtube> call = youtubeAPI.loadChannel(playListIDs.get(i));
+            Call<Youtube> call = youtubeAPI.loadYoutube(playListIDs.get(i));
 
             call.enqueue(new Callback<Youtube>() {
                 @Override

@@ -3,10 +3,9 @@ package com.example.mypc.watchyoutube.retrofit;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.RecyclerView;
 
-import com.example.mypc.watchyoutube.activity.ItemListActivity;
 import com.example.mypc.watchyoutube.adapter.ChanneltemRecyclerViewAdapter;
 import com.example.mypc.watchyoutube.objectsofchannel.Channel;
-import com.example.mypc.watchyoutube.restapi.ChannelAPI;
+import com.example.mypc.watchyoutube.restapi.YoutubeAPI;
 
 import java.util.ArrayList;
 
@@ -41,12 +40,12 @@ public class ChannelRetrofit {
                 .build();
 
         // Khởi tạo các cuộc gọi cho Retrofit 2.0
-        ChannelAPI channelAPI = retrofit.create(ChannelAPI.class);
+        YoutubeAPI youtubeAPI = retrofit.create(YoutubeAPI.class);
 
         final int size = channelIDs.size();
 
         for(int i = 0; i < size; i++){
-            Call<Channel> call = channelAPI.loadChannel(channelIDs.get(i));
+            Call<Channel> call = youtubeAPI.loadChannel(channelIDs.get(i));
             call.enqueue(new Callback<Channel>() {
                 @Override
                 public void onResponse(Call<Channel> call, Response<Channel> response) {
