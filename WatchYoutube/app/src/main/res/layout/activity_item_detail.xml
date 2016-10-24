@@ -43,7 +43,7 @@
         <fragment
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:name="com.example.mypc.watchyoutube.activity.ItemDetailFragment"/>
+            android:name="com.example.mypc.watchyoutube.fragment.ItemDetailFragment"/>
     </android.support.v4.widget.NestedScrollView>
 
     <android.support.design.widget.FloatingActionButton

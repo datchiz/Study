@@ -2,8 +2,6 @@ package com.example.mypc.watchyoutube.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.mypc.watchyoutube.activity.ItemDetailActivity;
-import com.example.mypc.watchyoutube.activity.ItemDetailFragment;
+import com.example.mypc.watchyoutube.fragment.ItemDetailFragment;
 import com.example.mypc.watchyoutube.R;
 import com.example.mypc.watchyoutube.objectsofchannel.Channel;
 import com.squareup.picasso.Picasso;

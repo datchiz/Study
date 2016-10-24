@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.mypc.watchyoutube.R;
+import com.example.mypc.watchyoutube.fragment.ItemDetailFragment;
 
 import org.greenrobot.eventbus.EventBus;
 
