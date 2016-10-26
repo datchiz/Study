@@ -1,5 +1,7 @@
 package com.example.mypc.watchyoutube.adapter;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,7 +10,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.mypc.watchyoutube.R;
+import com.example.mypc.watchyoutube.activity.ItemPlayActivity;
+import com.example.mypc.watchyoutube.fragment.ItemDetailFragment;
+import com.example.mypc.watchyoutube.objectofyoutube.Item;
 import com.example.mypc.watchyoutube.objectofyoutube.Snippet;
+import com.example.mypc.watchyoutube.objectofyoutube.Youtube;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -19,9 +25,9 @@ import java.util.ArrayList;
 
 public class YoutubeItemRecycleViewAdapter extends RecyclerView.Adapter<YoutubeItemRecycleViewAdapter.ViewHolder> {
 
-    private final ArrayList<Snippet> mValues;
+    private final ArrayList<Item> mValues;
 
-    public YoutubeItemRecycleViewAdapter(ArrayList<Snippet> items) {
+    public YoutubeItemRecycleViewAdapter(ArrayList<Item> items) {
         mValues           = items;
     }
 
@@ -35,11 +41,12 @@ public class YoutubeItemRecycleViewAdapter extends RecyclerView.Adapter<YoutubeI
     @Override
     public void onBindViewHolder(final YoutubeItemRecycleViewAdapter.ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
-        final String tilte       = holder.mItem.getTitle().toString();
-        final String description = holder.mItem.getDescription().toString();
+        final String tilte       = holder.mItem.getSnippet().getTitle().toString();
+        final String description = holder.mItem.getSnippet().getDescription().toString();
+        final String id          = holder.mItem.getSnippet().getResourceId().getVideoId().toString();
 
         if (!tilte.equals("Deleted video") && !tilte.equals("Private video")){
-            final String icon        = holder.mItem.getThumbnails().getDefault()
+            final String icon        = holder.mItem.getSnippet().getThumbnails().getDefault()
                     .getUrl()
                     .toString();
 
@@ -53,9 +60,9 @@ public class YoutubeItemRecycleViewAdapter extends RecyclerView.Adapter<YoutubeI
         holder.mView.setBackgroundResource(R.drawable.item_youtube_state);
         holder.mView.setClickable(true);
 
-//        holder.mView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
+        holder.mView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 //                if (mTwoPane) {
 //                    Bundle arguments = new Bundle();
 //                    arguments.putString(ItemDetailFragment.ARG_ITEM_ID, tilte);
@@ -71,8 +78,12 @@ public class YoutubeItemRecycleViewAdapter extends RecyclerView.Adapter<YoutubeI
 //
 //                    context.startActivity(intent);
 //                }
-//            }
-//        });
+                Context context = v.getContext();
+                Intent intent = new Intent(context, ItemPlayActivity.class);
+                intent.putExtra(ItemDetailFragment.PLAY_ITEM_ID, id);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -85,7 +96,7 @@ public class YoutubeItemRecycleViewAdapter extends RecyclerView.Adapter<YoutubeI
         public final TextView tvTitle;
         public final TextView tvDescription;
         public final ImageView ivIcon;
-        public Snippet mItem;
+        public Item mItem;
 
         public ViewHolder(View view) {
             super(view);

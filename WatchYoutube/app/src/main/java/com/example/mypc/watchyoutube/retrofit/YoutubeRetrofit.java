@@ -4,7 +4,6 @@ import android.support.v7.widget.RecyclerView;
 import com.example.mypc.watchyoutube.adapter.YoutubeItemRecycleViewAdapter;
 import com.example.mypc.watchyoutube.objectofplaylist.Item;
 import com.example.mypc.watchyoutube.objectofplaylist.PlayList;
-import com.example.mypc.watchyoutube.objectofyoutube.Snippet;
 import com.example.mypc.watchyoutube.objectofyoutube.Youtube;
 import com.example.mypc.watchyoutube.restapi.YoutubeAPI;
 
@@ -26,14 +25,14 @@ public class YoutubeRetrofit {
     private List<String> playListIDs;
     private RecyclerView recyclerView;
     private ArrayList<Youtube> itemYoutubes;
-    private ArrayList<Snippet> itemsOfSnippet;
+    private ArrayList<com.example.mypc.watchyoutube.objectofyoutube.Item> itemsOfYoutube;
 
     public YoutubeRetrofit(RecyclerView recyclerView) {
         this.recyclerView      = recyclerView;
         itemPlayLists          = new ArrayList<>();
         playListIDs            = new ArrayList<>();
         itemYoutubes           = new ArrayList<>();
-        itemsOfSnippet         = new ArrayList<>();
+        itemsOfYoutube         = new ArrayList<>();
     }
 
     public void execute(String channelIDs){
@@ -99,11 +98,11 @@ public class YoutubeRetrofit {
                             int numberOfYoutube = youtubeCurrent.getItems().size();
 
                             for (int j = 0; j < numberOfYoutube; j++){
-                                itemsOfSnippet.add(youtubeCurrent.getItems().get(j).getSnippet());
+                                itemsOfYoutube.add(youtubeCurrent.getItems().get(j));
                             }
                         }
 
-                        recyclerView.setAdapter(new YoutubeItemRecycleViewAdapter(itemsOfSnippet));
+                        recyclerView.setAdapter(new YoutubeItemRecycleViewAdapter(itemsOfYoutube));
                     }
                 }
 

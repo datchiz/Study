@@ -31,6 +31,7 @@ public class ItemDetailFragment extends Fragment {
      * represents.
      */
     public static final String ARG_ITEM_ID = "channel_id";
+    public static final String PLAY_ITEM_ID = "play_id";
     private String channelID;
     private View mView;
     private RecyclerView recyclerView;
