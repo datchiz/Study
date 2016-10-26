@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.RecyclerView;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +28,8 @@ import java.util.ArrayList;
 public class ChanneltemRecyclerViewAdapter extends RecyclerView.Adapter<ChanneltemRecyclerViewAdapter.ViewHolder> {
 
     private final ArrayList<Channel> mValues;
+    private final TypedValue mTypedValue = new TypedValue();
+    private int mBackground;
     private FragmentActivity mFragmentActivity;
     private Boolean mTwoPane;
 
@@ -34,6 +37,9 @@ public class ChanneltemRecyclerViewAdapter extends RecyclerView.Adapter<Channelt
         mValues           = items;
         mFragmentActivity = fragmentActivity;
         mTwoPane          = twoPane;
+
+        mFragmentActivity.getTheme().resolveAttribute(R.attr.selectableItemBackground, mTypedValue, true);
+        mBackground = mTypedValue.resourceId;
     }
 
     @Override
@@ -59,6 +65,7 @@ public class ChanneltemRecyclerViewAdapter extends RecyclerView.Adapter<Channelt
         holder.tvTitle.setText(tilte);
         holder.tvDescription.setText(description);
         holder.mView.setBackgroundResource(R.drawable.item_channel_state);
+        holder.mView.setBackgroundResource(mBackground);
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
